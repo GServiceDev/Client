@@ -1,13 +1,15 @@
 using UnityEngine;
 
-public class ChessboardGenerator : MonoBehaviour
+public class Table : MonoBehaviour
 {
-    public int rows = 8;
-    public int columns = 8;
+    public int rows = 7;
+    public int columns = 6;
     public Vector3 size = new Vector3(300f, 30f, 280f);
     public float offset = 20f;
 
-    void Start()
+    public GameObject cardTemplate;
+
+    private void Start()
     {
         GenerateChessboard();
     }
@@ -18,33 +20,39 @@ public class ChessboardGenerator : MonoBehaviour
         {
             for (int col = 0; col < columns; col++)
             {
-                Vector3 position = new Vector3(col * (size.x + offset), 0f, row * (size.z + offset));
-                CreateSquare(position);
+                Vector3 cellPosition = new Vector3(col * (size.x + offset), 0f, row * (size.z + offset));
+                GenerateCell(cellPosition, row, col);
             }
         }
     }
 
-    void CreateSquare(Vector3 position)
+    void GenerateCell(Vector3 position, int row, int col)
     {
-        GameObject square = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        square.transform.position = position;
-        square.transform.localScale = size;
-        square.GetComponent<Renderer>().material.color = GetSquareColor(position);
-    }
+        GameObject cellObj = new GameObject("Cell [" + row + ", " + col + "]");
+        cellObj.transform.parent = transform;
+        cellObj.transform.localPosition = position;
 
-    Color GetSquareColor(Vector3 position)
-    {
-        int row = (int)(position.z / (size.z + offset));
-        int col = (int)(position.x / (size.x + offset));
+        Cell cell = cellObj.AddComponent<Cell>();
+        cell.row = row;
+        cell.col = col;
 
-        // White color for even rows and columns, black for odd rows and columns.
+        // Assegna il colore della cella in base alla posizione della scacchiera.
         if ((row + col) % 2 == 0)
         {
-            return Color.white;
+            cell.terrain = "White";
         }
         else
         {
-            return Color.black;
+            cell.terrain = "Black";
+        }
+
+        if (true)
+        {
+            cell.GenerateCell(cards_DB.cardList[0], cardTemplate);
+        }
+        else
+        {
+            cell.GenerateCell(null, null);
         }
     }
 }

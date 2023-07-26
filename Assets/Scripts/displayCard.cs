@@ -8,7 +8,7 @@ using TMPro;
 
 public class DisplayCard : MonoBehaviour
 {
-    public List<Card> displayCard = new List<Card>();
+    public List<Card_SO> displayCard_SO = new List<Card_SO>();
     public int displayId = 0;
 
     public int Id;
@@ -28,10 +28,10 @@ public class DisplayCard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        displayCard.Add(cards_DB.cardList[displayId]);
-        Id = displayCard[0].Id;
-        Title = displayCard[0].Title;
-        ImageSprite = displayCard[0].ImageSprite;
+        displayCard_SO.Add(cards_DB.cardList[displayId]);
+        Id = displayCard_SO[0].Id;
+        Title = displayCard_SO[0].Title;
+        ImageSprite = displayCard_SO[0].ImageSprite;
         
         titleText.text = " " + Title;
         artImage.sprite = ImageSprite;

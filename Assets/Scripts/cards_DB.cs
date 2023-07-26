@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class cards_DB : MonoBehaviour
 {
-    public static List<Card> cardList = new List<Card>(); //fully accessable
+    public static List<Card_SO> cardList = new List<Card_SO>(); //fully accessable
 
 
     void Awake()
     {
-        cardList.Add(new Card(0, "Goliath, turned antelope", (7,2,2), (12,4), 1,
+        
+        cardList.Add(CreateCard(0, "Goliath, turned antelope", (7,2,2), (12,4), 1,
          "Necrotic",
          ("Adaptation-Gap-Target'" , "Steal 2 health from a random enemy creature-4-null"),   
         ("n","null"),
@@ -18,6 +19,23 @@ public class cards_DB : MonoBehaviour
             
          ));
 
+    }
+
+    private Card_SO CreateCard(int id, string title, (int, int, int) cost, (int, int) body, int energy,
+        string nature, (string, string) tags, (string, string) effect, string description, Sprite imageSprite)
+    {
+        Card_SO card = ScriptableObject.CreateInstance<Card_SO>();
+        card.Id = id;
+        card.Title = title;
+        card.Cost = cost;
+        card.Body = body;
+        card.Energy = energy;
+        card.Nature = nature;
+        card.Tags = tags;
+        card.Effect = effect;
+        card.Description = description;
+        card.ImageSprite = imageSprite;
+        return card;
     }
 
 

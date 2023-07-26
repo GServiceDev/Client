@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerDeck : MonoBehaviour
 {   
-    public List<Card> deck = new List<Card>(); 
-    public List<Card> container = new List<Card>(); 
+    public List<Card_SO> deck = new List<Card_SO>(); 
+    public List<Card_SO> container = new List<Card_SO>(); 
     
     public int x;
     public int deckSize = 10;

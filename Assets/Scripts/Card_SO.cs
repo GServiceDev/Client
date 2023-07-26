@@ -9,7 +9,7 @@ public class Card_SO : ScriptableObject
 {   
 
     public int Id;
-    public new string Title;
+    public string Title;
     public (int, int, int) Cost; //S-M-B
     public (int, int) Body; //{ get; private set; }
     public int Energy;
@@ -20,5 +20,4 @@ public class Card_SO : ScriptableObject
     
     public Sprite ImageSprite; //{ get; private set; }
 
-    
 }
